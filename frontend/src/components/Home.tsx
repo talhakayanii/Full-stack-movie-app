@@ -8,7 +8,7 @@ const Home: React.FC = () => {
   return (
     <div className="home-container">
       <div className="home-content">
-        <h1>Welcome to Full Stack Auth App</h1>
+        <h1>Welcome to Full Stack Movie App</h1>
         <p>A complete authentication system built with React, Node.js, Express, and MongoDB.</p>
         
         {user ? (
