@@ -1,1 +1,12 @@
-Till now adds the initial authentication functionality, including user signup and login on both the frontend and backend. It includes route handling, form validation, API integration, and JWT token generation.
+✅Features Completed in Sprint 1
+ Email/password-based user registration and login
+
+ JWT token generation & verification
+
+ JWT stored in localStorage on login
+
+ Protected routes on frontend
+
+ Form validation using React hooks
+
+ Passwords hashed using bcrypt before storing in MongoDB
