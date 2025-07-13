@@ -3,8 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { connectDB } from './config/database';
 import authRoutes from './routes/auth';
-
-
+import logger from './config/logger'; // Importing logger
 
 // Load environment variables
 dotenv.config();
@@ -33,10 +32,10 @@ app.get('/api/health', (req, res) => {
 
 // Error handling middleware
 app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
-  console.error(err.stack);
+  logger.error(err.stack); // Replaced console.error with winston
   res.status(500).json({ message: 'Something went wrong!' });
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  logger.info(`Server running on port ${PORT}`); // Replaced console.log with winston
 });
