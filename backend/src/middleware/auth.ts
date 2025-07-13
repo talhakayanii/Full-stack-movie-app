@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import { verifyToken } from '../utlis/jwt';
 import { User } from '../models/User';
+import { sendResponse } from '../utlis/responseHelper';  // Import your response helper
+import logger from '../config/logger';
 
 interface AuthenticatedRequest extends Request {
   user?: any;
@@ -16,7 +18,8 @@ export const authenticateToken = async (
     const token = authHeader && authHeader.split(' ')[1];
 
     if (!token) {
-      res.status(401).json({ message: 'Access token required' });
+      logger.warn('Access token missing');  // Log a warning if token is missing
+      sendResponse(res, { success: false, message: 'Access token required' });
       return;
     }
 
@@ -24,13 +27,15 @@ export const authenticateToken = async (
     const user = await User.findById(decoded.id).select('-password');
 
     if (!user) {
-      res.status(401).json({ message: 'Invalid token' });
+      logger.warn('Invalid token used by a user');  // Log a warning for invalid token
+      sendResponse(res, { success: false, message: 'Invalid token' });
       return;
     }
 
     req.user = user;
     next();
   } catch (error) {
-    res.status(403).json({ message: 'Invalid or expired token' });
+    logger.error('Token verification failed', { error });  // Log the error
+    sendResponse(res, { success: false, message: 'Invalid or expired token', errors: error });
   }
 };

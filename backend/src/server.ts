@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import { connectDB } from './config/database';
 import authRoutes from './routes/auth';
 import logger from './config/logger'; // Importing logger
+import { sendResponse } from './utlis/responseHelper'; // Importing sendResponse
 
 // Load environment variables
 dotenv.config();
@@ -27,13 +28,13 @@ app.use('/api/auth', authRoutes);
 
 // Health check route
 app.get('/api/health', (req, res) => {
-  res.json({ message: 'Server is running!' });
+  sendResponse(res, { success: true, message: 'Server is running!' });
 });
 
 // Error handling middleware
 app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
   logger.error(err.stack); // Replaced console.error with winston
-  res.status(500).json({ message: 'Something went wrong!' });
+  sendResponse(res, { success: false, message: 'Something went wrong!' });
 });
 
 app.listen(PORT, () => {

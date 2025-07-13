@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import { User } from '../models/User';
 import { generateToken } from '../utlis/jwt';
 import { authenticateToken } from '../middleware/auth';
+import { sendResponse } from '../utlis/responseHelper';  // Importing the response helper
 
 const router = express.Router();
 
@@ -17,7 +18,7 @@ router.post('/register', async (req: Request, res: Response): Promise<void> => {
     // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      res.status(400).json({ message: 'User already exists with this email' });
+      sendResponse(res, { success: false, message: 'User already exists with this email' });
       return;
     }
 
@@ -28,21 +29,24 @@ router.post('/register', async (req: Request, res: Response): Promise<void> => {
     // Generate token
     const token = generateToken(user);
 
-    res.status(201).json({
+    sendResponse(res, {
+      success: true,
       message: 'User created successfully',
-      token,
-      user: {
-        id: user._id,
-        name: user.name,
-        email: user.email
-      }
+      data: {
+        token,
+        user: {
+          id: user._id,
+          name: user.name,
+          email: user.email,
+        },
+      },
     });
   } catch (error: any) {
     if (error.name === 'ValidationError') {
       const messages = Object.values(error.errors).map((err: any) => err.message);
-      res.status(400).json({ message: messages.join(', ') });
+      sendResponse(res, { success: false, message: messages.join(', ') });
     } else {
-      res.status(500).json({ message: 'Server error' });
+      sendResponse(res, { success: false, message: 'Server error' });
     }
   }
 });
@@ -55,47 +59,52 @@ router.post('/login', async (req: Request, res: Response): Promise<void> => {
     // Find user
     const user = await User.findOne({ email });
     if (!user) {
-      res.status(400).json({ message: 'Invalid credentials' });
+      sendResponse(res, { success: false, message: 'Invalid credentials' });
       return;
     }
 
     // Check password
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
-      res.status(400).json({ message: 'Invalid credentials' });
+      sendResponse(res, { success: false, message: 'Invalid credentials' });
       return;
     }
 
     // Generate token
     const token = generateToken(user);
 
-    res.json({
+    sendResponse(res, {
+      success: true,
       message: 'Login successful',
-      token,
-      user: {
-        id: user._id,
-        name: user.name,
-        email: user.email
-      }
+      data: {
+        token,
+        user: {
+          id: user._id,
+          name: user.name,
+          email: user.email,
+        },
+      },
     });
   } catch (error) {
-    res.status(500).json({ message: 'Server error' });
+    sendResponse(res, { success: false, message: 'Server error' });
   }
 });
 
 // Get user profile (protected route)
 router.get('/profile', authenticateToken, async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
-    res.json({
-      user: {
+    sendResponse(res, {
+      success: true,
+      message: 'User profile retrieved successfully',
+      data: {
         id: req.user._id,
         name: req.user.name,
         email: req.user.email,
-        createdAt: req.user.createdAt
-      }
+        createdAt: req.user.createdAt,
+      },
     });
   } catch (error) {
-    res.status(500).json({ message: 'Server error' });
+    sendResponse(res, { success: false, message: 'Server error' });
   }
 });
 
