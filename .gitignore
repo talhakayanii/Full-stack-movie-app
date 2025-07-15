@@ -1,0 +1,29 @@
+# Build outputs
+**/build/
+**/dist/
+
+# Log files
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE/editor folders
+.vscode/
+.idea/
+
+
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+.env
+backend/.env
+# Ignoring node_modules in backend and frontend
+/backend/node_modules/
+/frontend/node_modules/
+
+# Ignoring frontend logo files
+frontend/src/logo.svg
+frontend/public/logo512.png
+frontend/public/logo192.png
