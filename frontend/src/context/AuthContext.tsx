@@ -36,7 +36,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const login = async (data: LoginData): Promise<void> => {
     try {
       const response = await authAPI.login(data);
-      const { token: newToken, user: newUser } = response;
+      // ✅ Fix: Access token and user from response.data
+      const { token: newToken, user: newUser } = response.data;
       
       localStorage.setItem('token', newToken);
       localStorage.setItem('user', JSON.stringify(newUser));
@@ -51,7 +52,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const register = async (data: RegisterData): Promise<void> => {
     try {
       const response = await authAPI.register(data);
-      const { token: newToken, user: newUser } = response;
+      // ✅ Fix: Access token and user from response.data
+      const { token: newToken, user: newUser } = response.data;
       
       localStorage.setItem('token', newToken);
       localStorage.setItem('user', JSON.stringify(newUser));
