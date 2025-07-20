@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Dashboard: React.FC = () => {
   const { user, logout } = useAuth();
@@ -26,12 +26,13 @@ const Dashboard: React.FC = () => {
           <div className="info-card">
             <p><strong>Name:</strong> {user?.name}</p>
             <p><strong>Email:</strong> {user?.email}</p>
-            <p><strong>ID:</strong> {user?.id}</p>
+            
           </div>
         </div>
 
         <div className="dashboard-features">
           <h2>Dashboard Features</h2>
+          
           <div className="features-grid">
             <div className="feature-card">
               <h3>Profile Management</h3>
@@ -44,6 +45,19 @@ const Dashboard: React.FC = () => {
             <div className="feature-card">
               <h3>Activity</h3>
               <p>View your recent activity and login history.</p>
+            </div>
+            <div className="feature-card">
+              <h3>Movie Catalog</h3>
+              <p>Browse our extensive collection of movies.</p>
+              <Link 
+              to="/movies" 
+              className="explore-movies-btn"
+>
+              Explore Movies
+              </Link>
+
+                
+              
             </div>
           </div>
         </div>

@@ -6,6 +6,8 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
+import MovieListing from './components/MovieListing';
+import MovieDetails from './components/MovieDetails';
 import './App.css';
 
 const App: React.FC = () => {
@@ -22,6 +24,23 @@ const App: React.FC = () => {
               element={
                 <ProtectedRoute>
                   <Dashboard />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/movies" 
+              element={
+                <ProtectedRoute>
+                  <MovieListing />
+                </ProtectedRoute>
+              } 
+            />
+            
+            <Route 
+              path="/movies/:id" 
+              element={
+                <ProtectedRoute>
+                  <MovieDetails />
                 </ProtectedRoute>
               } 
             />
