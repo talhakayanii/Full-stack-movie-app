@@ -103,6 +103,7 @@ body {
   justify-content: center;
   gap: 10px;
   flex-wrap: wrap;
+  
 }
 
 .features {
@@ -117,7 +118,7 @@ body {
 }
 
 .feature {
-  background: white;
+  background: rgb(231, 233, 233);
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -382,4 +383,789 @@ body {
   .features-grid {
     grid-template-columns: 1fr;
   }
+}
+.movie-grid-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Movie Grid Styles */
+.movie-grid {
+  display: grid;
+  gap: 16px;
+  width: 100%;
+  
+  /* Mobile: 2 movies per row */
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Tablet: 3-4 movies per row */
+@media (min-width: 640px) {
+  .movie-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+}
+
+/* Desktop: 4-5 movies per row */
+@media (min-width: 768px) {
+  .movie-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .movie-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .movie-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/* Movie Card Styles */
+
+.movie-card {
+  width: 100%;
+  max-width: none;
+  background: #1f2937;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative; /* Added for hover overlay */
+  transform-origin: center; /* Added for smooth scaling */
+}
+
+/* Enhanced hover effect with scaling and z-index */
+.movie-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(250, 249, 249, 0.5);
+  z-index: 10;
+}
+
+/* Ensure movie grid allows for hover scaling */
+.movie-grid {
+  display: grid;
+  gap: 1rem; /* Increased gap to accommodate hover scaling */
+  width: 100%;
+  
+  /* Mobile: 2 movies per row */
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Line clamp utility for title truncation in hover overlay */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Rating color classes */
+.rating-good {
+  color: #10b981; /* Green */
+}
+
+.rating-average {
+  color: #f59e0b; /* Yellow/Orange */
+}
+
+.rating-poor {
+  color: #ef4444; /* Red */
+}
+
+/* Enhanced backdrop blur for better readability */
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+}
+
+/* Smooth transitions for hover elements */
+.movie-card .transition-opacity {
+  transition: opacity 0.3s ease;
+}
+
+.movie-card .transition-all {
+  transition: all 0.3s ease;
+}
+
+/* Optional: Add a subtle animation delay for staggered effects */
+.movie-grid .movie-card:nth-child(odd) {
+  transition-delay: 0.05s;
+}
+
+.movie-grid .movie-card:nth-child(even) {
+  transition-delay: 0.1s;
+}
+
+/* Ensure hover overlay text is readable */
+.movie-card .text-gray-200 {
+  color: #e5e7eb;
+}
+
+.movie-card .text-gray-300 {
+  color: #d1d5db;
+}
+
+.movie-card .text-yellow-400 {
+  color: #fbbf24;
+}
+
+.movie-card .border-gray-600 {
+  border-color: #4b5563;
+}
+
+/* Media queries adjustments for hover scaling */
+@media (min-width: 640px) {
+  .movie-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem; /* Slightly more gap for tablets */
+  }
+}
+
+@media (min-width: 768px) {
+  .movie-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem; /* More gap for desktop */
+  }
+}
+
+@media (min-width: 1024px) {
+  .movie-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .movie-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/* Movie poster container */
+.movie-poster-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2/3; /* Standard movie poster ratio */
+  overflow: hidden;
+}
+
+.movie-poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+/* Movie info section */
+.movie-info {
+  padding: 12px;
+  background: #1f2937;
+}
+
+.movie-title {
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+  margin-bottom: 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 36px; /* Ensures consistent height */
+}
+
+.movie-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+}
+
+.movie-year {
+  color: #9ca3af;
+}
+
+.movie-rating {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-weight: 500;
+}
+
+.rating-good { color: #10b981; }
+.rating-average { color: #f59e0b; }
+.rating-poor { color: #ef4444; }
+
+/* Loading skeleton */
+.movie-skeleton {
+  background: #1f2937;
+  border-radius: 8px;
+  overflow: hidden;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeleton-poster {
+  width: 100%;
+  aspect-ratio: 2/3;
+  background: #374151;
+}
+
+.skeleton-info {
+  padding: 12px;
+}
+
+.skeleton-title {
+  height: 16px;
+  background: #374151;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.skeleton-meta {
+  height: 12px;
+  background: #374151;
+  border-radius: 4px;
+  width: 60%;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Fix for any container width issues */
+.dashboard-content,
+.main-content,
+.page-container {
+  width: 100%;
+  max-width: none;
+}
+
+/* Remove any conflicting flex or width constraints */
+.container:has(.movie-grid-container) {
+  max-width: none;
+  width: 100%;
+}
+
+/* Ensure parent containers don't constrain width */
+.movie-grid-container * {
+  box-sizing: border-box;
+}
+/* Enhanced SearchBar Styles */
+.search-bar-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  width: 320px;
+  max-width: calc(100vw - 40px);
+}
+
+.search-bar-wrapper {
+  position: relative;
+}
+
+.search-input-container {
+  position: relative;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    0 4px 16px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.search-input-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+}
+
+.search-input-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.15),
+    0 6px 20px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.search-input-container.focused {
+  transform: translateY(-2px) scale(1.02);
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: 
+    0 16px 48px rgba(59, 130, 246, 0.2),
+    0 8px 24px rgba(59, 130, 246, 0.1),
+    0 0 0 4px rgba(59, 130, 246, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .search-input-container {
+    background: rgba(17, 24, 39, 0.95);
+    border-color: rgba(75, 85, 99, 0.3);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      0 4px 16px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .search-input-container::before {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  }
+
+  .search-input-container:hover {
+    border-color: rgba(59, 130, 246, 0.4);
+    box-shadow: 
+      0 12px 40px rgba(0, 0, 0, 0.4),
+      0 6px 20px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+
+  .search-input-container.focused {
+    border-color: rgba(59, 130, 246, 0.6);
+    box-shadow: 
+      0 16px 48px rgba(59, 130, 246, 0.3),
+      0 8px 24px rgba(59, 130, 246, 0.2),
+      0 0 0 4px rgba(59, 130, 246, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Search Icon */
+.search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.search-icon-svg {
+  width: 20px;
+  height: 20px;
+  color: #9ca3af;
+  transition: color 0.2s ease;
+}
+
+.search-input-container.focused .search-icon-svg {
+  color: #3b82f6;
+}
+
+@media (prefers-color-scheme: dark) {
+  .search-icon-svg {
+    color: #6b7280;
+  }
+  
+  .search-input-container.focused .search-icon-svg {
+    color: #60a5fa;
+  }
+}
+
+/* Input Field */
+.search-input {
+  width: 100%;
+  padding: 16px 16px 16px 52px;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  font-weight: 500;
+  color: #1f2937;
+ placeholder-color: #9ca3af;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.search-input::placeholder {
+  color: #9ca3af;
+  font-weight: 400;
+}
+
+@media (prefers-color-scheme: dark) {
+  .search-input {
+    color: #f9fafb;
+  }
+  
+  .search-input::placeholder {
+    color: #6b7280;
+  }
+}
+
+/* Clear Button */
+.clear-button {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: rgba(239, 68, 68, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.clear-button:hover {
+  background: rgba(239, 68, 68, 0.2);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.clear-icon {
+  width: 16px;
+  height: 16px;
+  color: #ef4444;
+}
+
+/* Keyboard Hint */
+.keyboard-hint {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.kbd-shortcut {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #6b7280;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  .kbd-shortcut {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #9ca3af;
+  }
+}
+
+/* Search Suggestions */
+.search-suggestions {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: rgba(241, 239, 239, 0.98);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.15),
+    0 8px 24px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  animation: slideInDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .search-suggestions {
+    background: rgba(17, 24, 39, 0.98);
+    border-color: rgba(75, 85, 99, 0.3);
+    box-shadow: 
+      0 20px 40px rgba(0, 0, 0, 0.4),
+      0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.suggestions-header {
+  padding: 12px 16px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+@media (prefers-color-scheme: dark) {
+  .suggestions-header {
+    color: #9ca3af;
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.suggestions-list {
+  padding: 8px;
+}
+
+.suggestion-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 12px;
+  border: none;
+  background: transparent;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.suggestion-item:hover {
+  background: rgba(59, 130, 246, 0.1);
+  color: #1e40af;
+  transform: translateX(4px);
+}
+
+.suggestion-icon {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .suggestion-item {
+    color: #d1d5db;
+  }
+  
+  .suggestion-item:hover {
+    background: rgba(59, 130, 246, 0.2);
+    color: #93c5fd;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .search-bar-container {
+    width: 280px;
+    top: 16px;
+    right: 16px;
+  }
+  
+  .search-input {
+    padding: 14px 14px 14px 48px;
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+  
+  .search-input-container.focused {
+    transform: translateY(-1px) scale(1.01);
+  }
+}
+
+@media (max-width: 480px) {
+  .search-bar-container {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    max-width: none;
+    margin-bottom: 20px;
+  }
+  
+  .search-suggestions {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 20px 20px 0 0;
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+}
+
+/* Animation for loading states */
+.search-input-container.loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.search-input-container.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(59, 130, 246, 0.2),
+    transparent
+  );
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+/* Button Styling */
+.filters-panel button {
+  transition: all 0.3s ease-in-out; /* Smooth transition for hover and focus */
+  border-radius: 12px; /* Rounded corners for the button */
+  padding: 12px 24px; /* Increased padding for better prominence */
+  font-weight: bold; /* Make text more prominent */
+  text-transform: uppercase; /* Uppercase text for a strong visual effect */
+  border: none; /* Remove border to keep the design clean */
+  font-family: 'Arial', sans-serif; /* Use a clean, modern font */
+}
+
+/* Hover Effects */
+.filters-panel button:hover {
+  background-color: #2b6cb0; /* Lighter, distinct blue for hover state */
+  transform: scale(1.05); /* Slight scale-up effect */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* More prominent shadow for depth */
+  border-color: #2563eb; /* Outline on hover for better definition */
+}
+
+/* Focus Effects */
+.filters-panel button:focus {
+  outline: none; /* Remove default focus outline */
+  border: 2px solid #1d4ed8; /* Blue border on focus for accessibility */
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.6); /* Blue shadow for focus state */
+  background-color: #1d4ed8; /* Keep focused background darker */
+}
+
+/* Active State Button */
+.filters-panel button.bg-blue-600 {
+  background-color: #3182ce; /* Lighter blue for selected state */
+  color: white; /* Ensure text remains readable */
+}
+
+.filters-panel button.bg-gray-700 {
+  background-color: #333333; /* Very dark grey for non-selected state */
+  color: #f7fafc; /* Light grey text for high contrast */
+}
+
+.filters-panel button.text-white {
+  color: #ffffff; /* Pure white text */
+}
+
+.filters-panel button.text-gray-300 {
+  color: #cbd5e0; /* Lighter gray for non-active text */
+}
+
+/* Hover Effects on Active Button */
+.filters-panel button.bg-blue-600:hover {
+  background-color: #63b3ed; /* Light blue on hover for better contrast */
+}
+
+/* Spacing between buttons */
+.filters-panel button {
+  margin-right: 15px; /* Increase margin for better spacing */
+}
+
+/* Active State Button Pressed */
+.filters-panel button.bg-blue-600:active {
+  transform: scale(0.98); /* Slight scale-down effect on click */
+  background-color: #2c5282; /* Darker blue for active state */
+}
+
+/* Move the Popular button to the right */
+.filters-panel button:first-child {
+  margin-left: 20px; /* Add left margin to push it to the right */
+}
+
+/* Adjust contrast for accessibility (WCAG standards) */
+.filters-panel button {
+  color: white; /* White text for all buttons */
+}
+
+/* Ensure good color contrast */
+.filters-panel button.bg-blue-600,
+.filters-panel button.bg-blue-600:hover {
+  background-color: #3182ce;
+}
+
+.filters-panel button.bg-gray-700,
+.filters-panel button.bg-gray-700:hover {
+  background-color: #2d3748;
+}
+
+.filters-panel button.text-gray-300,
+.filters-panel button.bg-gray-700.text-gray-300 {
+  color: #e2e8f0; /* Light gray text on dark background */
+}
+/*Sort by*/
+.filters-panel label {
+  margin-left: 550px;
+  font-size: 1.25rem;
+  font-weight: bold; 
+}
+/*popular buttons etc*/
+.filters-panel button:first-child {
+  margin-left: 400px; 
+}
+.top-movies-heading {
+  margin-left: 50px; /* Same pattern as your filter buttons */
+}
+.explore-movies-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 5px 10px;
+  background: linear-gradient(90deg, #3b82f6, #6366f1); /* Gradient from blue to indigo */
+  color: white;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out; /* Smooth transition */
+}
+
+.explore-movies-btn:hover {
+  background: linear-gradient(90deg, #2563eb, #4f46e5); /* Slightly lighter on hover */
+  transform: scale(1.05); /* Scale up the button on hover */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+}
+
+.explore-movies-btn:focus {
+  outline: none; /* Removes focus outline */
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.5); /* Focus outline for accessibility */
 }
