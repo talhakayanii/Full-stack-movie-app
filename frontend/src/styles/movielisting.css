@@ -1,0 +1,213 @@
+/* THIS PART HANDLES MOVIELISTING.TSX */
+ /* MovieListing specific styles */
+.movie-listing-container {
+  min-height: 100vh;
+  background-color: #000000 !important;
+  color: white;
+  position: relative;
+}
+
+.movie-listing-bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(31, 41, 55, 0.9) 0%, #000000 100%);
+  pointer-events: none;
+}
+
+.movie-listing-content {
+  position: relative;
+  z-index: 10;
+}
+
+.movie-listing-main-container {
+  max-width: 1536px; /* max-w-screen-2xl */
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .movie-listing-main-container {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .movie-listing-main-container {
+    padding: 0 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .movie-listing-main-container {
+    padding: 0 3rem;
+  }
+}
+
+/* Header styles */
+.movie-listing-header {
+  padding-top: 0.5rem;
+  padding-bottom: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .movie-listing-header {
+    padding-top: .0rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+.movie-listing-header-content {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.movie-listing-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+@media (min-width: 640px) {
+  .movie-listing-title {
+    font-size: 1.875rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .movie-listing-title {
+    font-size: 2.25rem;
+  }
+}
+
+.movie-listing-subtitle {
+  color: #9ca3af;
+  font-size: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .movie-listing-subtitle {
+    font-size: 1.125rem;
+  }
+}
+
+/* Search section styles */
+.movie-listing-search-section {
+  margin-bottom: 1.0rem;
+}
+
+@media (min-width: 1024px) {
+  .movie-listing-search-section {
+    margin-bottom: 2rem;
+  }
+}
+
+.movie-listing-search-wrapper {
+  max-width: 42rem; /* max-w-2xl */
+}
+
+.movie-listing-search-status {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.movie-listing-search-label {
+  color: #9ca3af;
+}
+
+.movie-listing-search-query {
+  color: white;
+  font-weight: 500;
+}
+
+.movie-listing-clear-search {
+  color: #9ca3af;
+  font-size: 0.875rem;
+  text-decoration: underline;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.movie-listing-clear-search:hover {
+  color: white;
+}
+
+/* Filters section styles */
+.movie-listing-filters-section {
+  margin-top: 0rem;
+}
+
+@media (min-width: 1024px) {
+  .movie-listing-filters-section {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Results header styles */
+.movie-listing-results-header {
+  margin-bottom: .0rem;
+}
+
+@media (min-width: 1024px) {
+  .movie-listing-results-header {
+    margin-bottom: 2rem;
+  }
+}
+
+.movie-listing-results-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.movie-listing-results-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: white;
+}
+
+@media (min-width: 1024px) {
+  .movie-listing-results-title {
+    font-size: 1.5rem;
+  }
+}
+
+.movie-listing-results-count {
+  color: #9ca3af;
+  font-size: 0.875rem;
+}
+
+@media (min-width: 1024px) {
+  .movie-listing-results-count {
+    font-size: 1rem;
+  }
+}
+
+/* Grid section styles */
+.movie-listing-grid-section {
+  padding-bottom: 3rem;
+}
+
+@media (min-width: 1024px) {
+  .movie-listing-grid-section {
+    padding-bottom: 4rem;
+  }
+}
+
+/* Bottom fade effect */
+.movie-listing-bottom-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 8rem;
+  background: linear-gradient(to top, #000000 0%, transparent 100%);
+  pointer-events: none;
+}

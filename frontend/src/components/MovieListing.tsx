@@ -7,6 +7,7 @@ import { Movie } from '../types/movie';
 import MovieGrid from './MovieGrid';
 import SearchBar from './SearchBar';
 import FiltersPanel from './FiltersPanel';
+import '../styles/movielisting.css';
 
 const MovieListing: React.FC = () => {
   const { user } = useAuth();
@@ -30,28 +31,28 @@ const MovieListing: React.FC = () => {
   };
 
   return (
-    <div className="netflix-listing min-h-screen bg-black text-white">
-      {/* Netflix-style hero gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-900/90 to-black pointer-events-none" />
+    <div className="movie-listing-container">
+      {/* Hero gradient background */}
+      <div className="movie-listing-bg-overlay" />
       
-      <div className="relative z-10">
-        {/* Container with Netflix-style padding */}
-        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-          {/* Netflix-style header */}
-          <header className="pt-8 pb-8 lg:pb-12">
-            <div className="flex flex-col space-y-2">
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white">
+      <div className="movie-listing-content">
+        {/* Main container */}
+        <div className="movie-listing-main-container">
+          {/* Header section */}
+          <header className="movie-listing-header">
+            <div className="movie-listing-header-content">
+              <h1 className="movie-listing-title">
                 Welcome back, {user?.name}
               </h1>
-              <p className="text-gray-400 text-base lg:text-lg">
+              <p className="movie-listing-subtitle">
                 
               </p>
             </div>
           </header>
 
-          {/* Netflix-style search section */}
-          <div className="mb-8 lg:mb-12">
-            <div className="max-w-2xl">
+          {/* Search section */}
+          <div className="movie-listing-search-section">
+            <div className="movie-listing-search-wrapper">
               <SearchBar 
                 onSearch={handleSearch} 
                 initialValue={searchQuery}
@@ -60,15 +61,15 @@ const MovieListing: React.FC = () => {
               />
             </div>
             
-            {/* Show current search query */}
+            {/* Current search query display */}
             {searchQuery && (
-              <div className="mt-4 flex items-center space-x-4">
-                <span className="text-gray-400">
-                  Searching for: <span className="text-white font-medium">"{searchQuery}"</span>
+              <div className="movie-listing-search-status">
+                <span className="movie-listing-search-label">
+                  Searching for: <span className="movie-listing-search-query">"{searchQuery}"</span>
                 </span>
                 <button
                   onClick={clearSearch}
-                  className="text-gray-400 hover:text-white text-sm underline transition-colors"
+                  className="movie-listing-clear-search"
                 >
                   Clear search
                 </button>
@@ -76,8 +77,8 @@ const MovieListing: React.FC = () => {
             )}
           </div>
 
-          {/* Netflix-style filters */}
-          <div className="mb-8 lg:mb-12">
+          {/* Filters section */}
+          <div className="movie-listing-filters-section">
             <FiltersPanel 
               filters={filters}
               onChange={setFilters}
@@ -85,22 +86,22 @@ const MovieListing: React.FC = () => {
             />
           </div>
 
-          {/* Results count and category */}
+          {/* Results header */}
           {!loading && movies.length > 0 && (
-            <div className="mb-6 lg:mb-8">
-              <div className="flex items-center justify-between">
-                <h2 className="text-xl lg:text-2xl font-semibold text-white top-movies-heading">
+            <div className="movie-listing-results-header">
+              <div className="movie-listing-results-header-content">
+                <h2 className="movie-listing-results-title">
                   {searchQuery ? `Search Results` : `Top Movies`}
                 </h2>
-                <span className="text-gray-400 text-sm lg:text-base">
+                <span className="movie-listing-results-count">
                   
                 </span>
               </div>
             </div>
           )}
 
-          {/* Netflix-style movie grid */}
-          <div className="pb-12 lg:pb-16">
+          {/* Movie grid section */}
+          <div className="movie-listing-grid-section">
             <MovieGrid
               movies={movies}
               loading={loading}
@@ -113,8 +114,8 @@ const MovieListing: React.FC = () => {
         </div>
       </div>
 
-      {/* Netflix-style bottom fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent pointer-events-none" />
+      {/* Bottom fade effect */}
+      <div className="movie-listing-bottom-fade" />
     </div>
   );
 };
