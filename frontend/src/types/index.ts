@@ -5,10 +5,14 @@ export interface User {
   createdAt?: string;
 }
 
+// ✅ Updated to match your backend response structure
 export interface AuthResponse {
+  success: boolean;
   message: string;
-  token: string;
-  user: User;
+  data: {
+    token: string;
+    user: User;
+  };
 }
 
 export interface LoginData {
