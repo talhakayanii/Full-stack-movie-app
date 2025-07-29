@@ -1,5 +1,5 @@
 // components/MovieListing.tsx
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useMovieSearch } from '../hooks/useMovies';
@@ -12,6 +12,7 @@ import '../styles/movielisting.css';
 const MovieListing: React.FC = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   
   const {
     movies,
@@ -26,8 +27,38 @@ const MovieListing: React.FC = () => {
     setFilters
   } = useMovieSearch();
 
+  // Handle browser back button to redirect to dashboard
+  useEffect(() => {
+    const handlePopState = (event: PopStateEvent) => {
+      // Prevent the default back navigation
+      window.history.pushState(null, '', window.location.href);
+      // Navigate to dashboard instead
+      navigate('/dashboard', { replace: true });
+    };
+
+    // Push current state to prevent immediate back
+    window.history.pushState(null, '', window.location.href);
+    
+    // Add event listener for back button
+    window.addEventListener('popstate', handlePopState);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, [navigate]);
+
   const handleMovieClick = (movie: Movie) => {
     navigate(`/movies/${movie.id}`);
+  };
+
+  const handleNavigation = (route: string) => {
+    navigate(route);
+    setIsMenuOpen(false); // Close menu after navigation
+  };
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
@@ -47,6 +78,83 @@ const MovieListing: React.FC = () => {
               <p className="movie-listing-subtitle">
                 
               </p>
+              
+              {/* Navigation Menu */}
+              <div className="movie-listing-nav-menu">
+                <button 
+                  onClick={toggleMenu}
+                  className="movie-listing-menu-toggle"
+                  title="Navigation Menu"
+                >
+                  <svg 
+                    className="movie-listing-hamburger-icon" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24" 
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth={2} 
+                      d="M4 6h16M4 12h16M4 18h16" 
+                    />
+                  </svg>
+                </button>
+                
+                {/* Dropdown Menu */}
+                {isMenuOpen && (
+                  <div className="movie-listing-dropdown">
+                    <button 
+                      onClick={() => handleNavigation('/dashboard')}
+                      className="movie-listing-dropdown-item"
+                    >
+                      <svg 
+                        className="movie-listing-dropdown-icon" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24" 
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path 
+                          strokeLinecap="round" 
+                          strokeLinejoin="round" 
+                          strokeWidth={2} 
+                          d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" 
+                        />
+                        <path 
+                          strokeLinecap="round" 
+                          strokeLinejoin="round" 
+                          strokeWidth={2} 
+                          d="M8 5a2 2 0 012-2h4a2 2 0 012 2v6H8V5z" 
+                        />
+                      </svg>
+                      <span>Dashboard</span>
+                    </button>
+                    
+                    <button 
+                      onClick={() => handleNavigation('/favorites')}
+                      className="movie-listing-dropdown-item"
+                    >
+                      <svg 
+                        className="movie-listing-dropdown-icon" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24" 
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path 
+                          strokeLinecap="round" 
+                          strokeLinejoin="round" 
+                          strokeWidth={2} 
+                          d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" 
+                        />
+                      </svg>
+                      <span>Favorites</span>
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           </header>
 
@@ -99,7 +207,7 @@ const MovieListing: React.FC = () => {
               </div>
             </div>
           )}
-
+                     
           {/* Movie grid section */}
           <div className="movie-listing-grid-section">
             <MovieGrid

@@ -16,7 +16,7 @@ const Dashboard: React.FC = () => {
   return (
     <div className="dashboard-container">
       <div className="dashboard-header">
-        <h1>Welcome to Dashboard</h1>
+        <h1>Welcome to Dashboard!</h1>
         <button onClick={handleLogout} className="logout-btn">
           Logout
         </button>
@@ -36,20 +36,11 @@ const Dashboard: React.FC = () => {
           <h2>Dashboard Features</h2>
           
           <div className="features-grid">
-            <div className="feature-card">
-              <h3>Profile Management</h3>
-              <p>Manage your profile information and settings.</p>
-            </div>
             
-            <div className="feature-card">
-              <h3>Security</h3>
-              <p>Update your password and security preferences.</p>
-            </div>
             
-            <div className="feature-card">
-              <h3>Activity</h3>
-              <p>View your recent activity and login history.</p>
-            </div>
+            
+            
+            
             
             <div className="feature-card">
               <h3>Movie Catalog</h3>
