@@ -211,3 +211,177 @@
   background: linear-gradient(to top, #000000 0%, transparent 100%);
   pointer-events: none;
 }
+/* Hamburger Navigation Menu Styles - Add these to your movielisting.css file */
+
+.movie-listing-nav-menu {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.movie-listing-menu-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.movie-listing-menu-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.movie-listing-menu-toggle:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.movie-listing-hamburger-icon {
+  width: 24px;
+  height: 24px;
+  stroke-width: 2;
+  transition: transform 0.3s ease;
+}
+
+.movie-listing-menu-toggle:hover .movie-listing-hamburger-icon {
+  transform: scale(1.1);
+}
+
+/* Dropdown Menu Styles */
+.movie-listing-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 8px;
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  backdrop-filter: blur(20px);
+  min-width: 180px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  animation: dropdownFadeIn 0.3s ease-out;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.movie-listing-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 18px;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.movie-listing-dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.movie-listing-dropdown-item:not(:last-child) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.movie-listing-dropdown-icon {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2;
+  transition: transform 0.2s ease;
+}
+
+.movie-listing-dropdown-item:hover .movie-listing-dropdown-icon {
+  transform: scale(1.1);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .movie-listing-nav-menu {
+    margin-top: 16px;
+  }
+  
+  .movie-listing-menu-toggle {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+  }
+  
+  .movie-listing-hamburger-icon {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .movie-listing-dropdown {
+    min-width: 160px;
+  }
+  
+  .movie-listing-dropdown-item {
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+  
+  .movie-listing-dropdown-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .movie-listing-nav-menu {
+    margin-top: 12px;
+  }
+  
+  .movie-listing-menu-toggle {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+  }
+  
+  .movie-listing-hamburger-icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .movie-listing-dropdown {
+    min-width: 140px;
+  }
+  
+  .movie-listing-dropdown-item {
+    padding: 10px 14px;
+    font-size: 12px;
+    gap: 10px;
+  }
+  
+  .movie-listing-dropdown-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
