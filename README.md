@@ -1,8 +1,8 @@
-Full-Stack Movie App with JWT Authentication and Cloud Deployment
+## Full-Stack Movie App with JWT Authentication and Cloud Deployment
 
 This app is built using the MERN stack (MongoDB, Express, React, Node.js) with secure user authentication and integration with a public movie API.
 
-Features
+## Features
 
 User Authentication: Secure login/signup with JWT (JSON Web Tokens).
 
@@ -14,7 +14,7 @@ Cloud Deployment: Hosted backend on AWS EC2 using the Free Tier.
 
 Data Analytics: Dashboards to track the usage of the app.
 
-Technologies Used
+## 🧩Technologies Used
 
 MongoDB (Database)
 
@@ -36,7 +36,7 @@ Power BI (Data Analytics)
 
 
 
-Prerequisites
+## Prerequisites
 
 Node.js installed on your machine.
 
@@ -48,7 +48,7 @@ Setup
 
 Clone the repository:
 
-git clone https://github.com/talhakayanii/movie-app.git
+git clone https://github.com/talhakayanii/Full-stack-movie-app.git
 cd movie-app
 
 
@@ -66,7 +66,7 @@ cd frontend
 npm install
 
 
-Set up environment variables:
+## Set up environment variables:
 
 Create a .env file in the backend directory.
 
@@ -87,7 +87,7 @@ npm start
 
 The app should now be running on http://localhost:3000.
 
-AWS Deployment 
+## AWS Deployment 
 
 To deploy the backend on AWS EC2, follow these steps:
 
@@ -102,3 +102,8 @@ Set up  MongoDB on EC2.
 Use PM2 to keep the backend server running.
 
 Test the backend API to ensure it’s working properly.
+
+
+
+
+
